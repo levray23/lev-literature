@@ -1,45 +1,56 @@
 - name: Poetry
   nav: Poems
+  tagline: Where feelings find their rhythm.
+  intro: A collection of poems born from the things that move us, haunt us, and
+    stay long after a moment has passed. Here, love, longing, grief, and wonder
+    find their way into words, sometimes through rhyme, sometimes through
+    silence. Each poem is an attempt to give shape to what the heart knows but
+    struggles to explain.
   noun: poems
   url: /poetry/
   theme: poetry
   numeral: I
-  tagline: "[Placeholder tagline for the poems shelf.]"
-  intro: "[Placeholder introduction to the Poetry archive. Two or three sentences in your own voice about what lives on this shelf and how you would like it to be read.]"
   image: /assets/site/hero-poetry.svg
 - name: Prose
   nav: Prose
+  tagline: Thoughts that refuse to remain unspoken.
+  intro: These are pieces written in the spaces between feeling and understanding.
+    Through personal reflections, intimate observations, and deliberate turns of
+    thought, this shelf explores the complexities of love, human nature, and the
+    experiences that make us question what we believe. Not every piece arrives
+    at an answer; some exist simply to ask better questions.
   noun: prose pieces
   url: /prose/
   theme: prose
   numeral: II
-  tagline: "[Placeholder tagline for the prose shelf.]"
-  intro: "[Placeholder introduction to the Prose archive. Describe the kind of writing gathered here, in your own words.]"
   image: /assets/site/hero-prose.svg
 - name: Fiction
   nav: Fiction
+  tagline: Imagined worlds, familiar truths.
+  intro: "[Placeholder introduction to the Fiction archive. Say what kind of
+    stories and worlds a reader will find here.]"
   noun: stories
   url: /fiction/
   theme: fiction
   numeral: III
-  tagline: "[Placeholder tagline for the fiction shelf.]"
-  intro: "[Placeholder introduction to the Fiction archive. Say what kind of stories and worlds a reader will find here.]"
   image: /assets/site/hero-fiction.svg
 - name: Nonfiction
   nav: Nonfiction
+  tagline: "[Placeholder tagline for the nonfiction shelf.]"
+  intro: "[Placeholder introduction to the Nonfiction archive. Describe the essays
+    and reflections gathered here.]"
   noun: essays
   url: /nonfiction/
   theme: nonfiction
   numeral: IV
-  tagline: "[Placeholder tagline for the nonfiction shelf.]"
-  intro: "[Placeholder introduction to the Nonfiction archive. Describe the essays and reflections gathered here.]"
   image: /assets/site/hero-nonfiction.svg
 - name: Fragments
   nav: Fragments
+  tagline: "[Placeholder tagline for the fragments shelf.]"
+  intro: "[Placeholder introduction to the Fragments archive. Explain what a
+    fragment means to you.]"
   noun: fragments
   url: /fragments/
   theme: fragments
   numeral: V
-  tagline: "[Placeholder tagline for the fragments shelf.]"
-  intro: "[Placeholder introduction to the Fragments archive. Explain what a fragment means to you.]"
   image: /assets/site/hero-fragments.svg
