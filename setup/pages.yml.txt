@@ -152,3 +152,46 @@ content:
       - name: contact_url
         label: Contact link address (optional)
         type: string
+
+  # 4. POEM, PROSE, FICTION, NONFICTION AND FRAGMENTS SHELVES
+  - name: categories
+    label: Shelf Introductions
+    type: file
+    path: _data/categories.yml
+    format: yaml
+    list: true
+    fields:
+      - name: name
+        label: Shelf Name
+        type: string
+        readonly: true
+      - name: nav
+        label: Navigation Label
+        type: string
+        readonly: true
+      - name: tagline
+        label: Shelf Tagline
+        type: string
+      - name: intro
+        label: Shelf Introduction
+        type: text
+      - name: noun
+        label: Display Word
+        type: string
+        readonly: true
+      - name: url
+        label: Shelf URL
+        type: string
+        readonly: true
+      - name: theme
+        label: Design Theme
+        type: string
+        readonly: true
+      - name: numeral
+        label: Shelf Number
+        type: string
+        readonly: true
+      - name: image
+        label: Shelf Image Path
+        type: string
+        readonly: true
