@@ -3,7 +3,7 @@ description: A collection of thoughts, stories, and things left unsaid.
 
 # If your repository is named <username>.github.io, leave baseurl empty.
 # Otherwise set it to "/your-repository-name" (see README, step 4).
-baseurl: ""
+baseurl: "/lev-literature"
 url: ""
 
 markdown: kramdown
