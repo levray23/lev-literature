@@ -31,3 +31,5 @@ exclude:
   - setup
   - vendor
   - node_modules
+ kramdown:
+  hard_wrap: true
