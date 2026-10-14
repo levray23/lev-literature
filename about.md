@@ -1,4 +1,6 @@
 ---
+title: About Lev
+permalink: /about/
 quote: I write to give a language to the things I have yet to understand.
 philosophy: >-
   I believe literature is a pursuit of understanding — an exploration of human
