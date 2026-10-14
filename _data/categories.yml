@@ -27,8 +27,6 @@
 - name: Fiction
   nav: Fiction
   tagline: Imagined worlds, familiar truths.
-  intro: "[Placeholder introduction to the Fiction archive. Say what kind of
-    stories and worlds a reader will find here.]"
   noun: stories
   url: /fiction/
   theme: fiction
@@ -36,9 +34,6 @@
   image: /assets/site/hero-fiction.svg
 - name: Nonfiction
   nav: Nonfiction
-  tagline: "[Placeholder tagline for the nonfiction shelf.]"
-  intro: "[Placeholder introduction to the Nonfiction archive. Describe the essays
-    and reflections gathered here.]"
   noun: essays
   url: /nonfiction/
   theme: nonfiction
@@ -46,9 +41,6 @@
   image: /assets/site/hero-nonfiction.svg
 - name: Fragments
   nav: Fragments
-  tagline: "[Placeholder tagline for the fragments shelf.]"
-  intro: "[Placeholder introduction to the Fragments archive. Explain what a
-    fragment means to you.]"
   noun: fragments
   url: /fragments/
   theme: fragments
