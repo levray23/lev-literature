@@ -1,0 +1,71 @@
+---
+layout: default
+---
+{% assign cat = site.data.categories | where: "name", page.category | first %}
+{% assign in_category = site.works | where: "category", page.category %}
+{% assign total = in_category | size %}
+{% assign n_en = in_category | where: "language", "English" | size %}
+{% assign n_fil = in_category | where: "language", "Filipino" | size %}
+{% assign n_both = in_category | where: "language", "Both" | size %}
+{% include sort-works.html list=in_category %}
+{% assign archive_sorted = sorted_works %}
+{% assign feat_raw = in_category | where: "featured", true %}
+{% include sort-works.html list=feat_raw %}
+{% assign feat_sorted = sorted_works %}
+
+<header class="archive-hero theme-{{ cat.theme }}">
+  <div class="container archive-hero-grid">
+    <div>
+      <span class="numeral-big" aria-hidden="true">{{ cat.numeral }}</span>
+      <h1 class="display">{{ cat.nav }}</h1>
+      <p class="lede">{{ cat.intro }}</p>
+      <div class="archive-stats">
+        <span><strong>{{ total }}</strong>{{ cat.noun }}</span>
+        {% if n_en > 0 %}<span><strong>{{ n_en }}</strong>English</span>{% endif %}
+        {% if n_fil > 0 %}<span><strong>{{ n_fil }}</strong>Filipino</span>{% endif %}
+        {% if n_both > 0 %}<span><strong>{{ n_both }}</strong>Both</span>{% endif %}
+      </div>
+    </div>
+    <figure class="archive-figure">
+      <img src="{{ cat.image | relative_url }}" alt="">
+      <figcaption>Placeholder photograph for the {{ cat.nav }} archive.</figcaption>
+    </figure>
+  </div>
+</header>
+
+{% if feat_sorted.size > 0 %}
+<section class="section" aria-labelledby="feat-h">
+  <div class="container">
+    <div class="section-head"><div><h2 class="h2" id="feat-h">Featured in {{ cat.nav }}</h2></div></div>
+    {% include carousel.html items=feat_sorted label=cat.nav limit=12 %}
+  </div>
+</section>
+{% endif %}
+
+<section class="section" id="archive" aria-labelledby="arch-h" data-archive>
+  <div class="container">
+    <div class="section-head"><div><h2 class="h2" id="arch-h">The full {{ cat.nav }} archive</h2><p>Every published piece, newest first.</p></div></div>
+    {% if total > 0 %}
+      <div class="toolbar">
+        <div class="search">
+          <label for="q" class="label">Search {{ cat.nav }}</label>
+          <input id="q" type="search" data-search-input placeholder="Title, subtitle, words…" autocomplete="off">
+        </div>
+        <div class="chips" role="group" aria-label="Filter by language">
+          <button type="button" data-lang-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-lang-filter="English" aria-pressed="false">English</button>
+          <button type="button" data-lang-filter="Filipino" aria-pressed="false">Filipino</button>
+          <button type="button" data-lang-filter="Both" aria-pressed="false">Both</button>
+        </div>
+      </div>
+      <p class="result-count" data-summary aria-live="polite"></p>
+      <div class="archive-grid" data-archive-grid>
+        {% for w in archive_sorted %}{% include card.html work=w %}{% endfor %}
+      </div>
+      <p class="empty" data-nomatch hidden>No pieces match that search.</p>
+      <nav class="pagination" data-pagination aria-label="Archive pages"></nav>
+    {% else %}
+      <p class="empty">Nothing has been published in {{ cat.nav }} yet.</p>
+    {% endif %}
+  </div>
+</section>

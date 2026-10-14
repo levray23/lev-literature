@@ -1,0 +1,6 @@
+{%- assign w = include.work -%}
+<li><a class="recent-row" href="{{ w.url | relative_url }}">
+  {% if w.image and w.image != "" %}<img src="{{ w.image | relative_url }}" alt="" loading="lazy">{% else %}<span class="recent-thumb" aria-hidden="true">{{ w.title | remove: "[" | strip | slice: 0 | upcase }}</span>{% endif %}
+  <span><span class="recent-title">{{ w.title }}</span><span class="recent-meta">{{ w.category }} · {{ w.language }}</span></span>
+  <span class="recent-date">{% if w.pubdate and w.pubdate != "" %}{{ w.pubdate | date: "%B %-d, %Y" }}{% endif %}</span>
+</a></li>

@@ -1,0 +1,49 @@
+---
+layout: default
+---
+<section class="about-hero">
+  <div class="container about-hero-grid">
+    <figure class="about-portrait">
+      {% if page.portrait and page.portrait != "" %}
+        <img src="{{ page.portrait | relative_url }}" alt="{{ page.portrait_alt | default: '' | escape }}">
+      {% else %}
+        <img src="{{ '/assets/site/portrait.svg' | relative_url }}" alt="">
+      {% endif %}
+      <figcaption>Lev</figcaption>
+    </figure>
+    <div>
+      <p class="label">The writer</p>
+      <h1 class="display">About <em>Lev</em></h1>
+      <div class="about-intro" style="margin-top:28px">{{ content }}</div>
+    </div>
+  </div>
+</section>
+
+{% if page.quote and page.quote != "" %}
+<section class="about-section about-section--white">
+  <div class="container"><blockquote class="pullquote">{{ page.quote }}</blockquote></div>
+</section>
+{% endif %}
+
+<section class="about-section">
+  <div class="container about-two">
+    <div><p class="label">Literary philosophy</p><h2 class="h2" style="margin-top:12px">How I think about writing</h2></div>
+    <div class="prose">{{ page.philosophy | markdownify }}</div>
+  </div>
+</section>
+
+<section class="about-section about-section--white">
+  <div class="container about-two">
+    <div><p class="label">Purpose of the archive</p><h2 class="h2" style="margin-top:12px">Why this archive exists</h2></div>
+    <div class="prose">{{ page.purpose | markdownify }}</div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="container">
+    <figure class="about-wide"><img src="{{ '/assets/site/about-wide.svg' | relative_url }}" alt=""><figcaption>Placeholder photograph.</figcaption></figure>
+    <div class="about-links" style="margin-top:32px">
+      {% for cat in site.data.categories %}<a class="btn btn--ghost" href="{{ cat.url | relative_url }}">{{ cat.nav }}</a>{% endfor %}
+    </div>
+  </div>
+</section>

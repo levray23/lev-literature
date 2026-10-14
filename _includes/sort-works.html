@@ -1,0 +1,14 @@
+{%- assign sorted_works = "" | split: "," -%}
+{%- assign sort_keys = "" | split: "," -%}
+{%- for w in include.list -%}
+  {%- assign d = "00000000" -%}
+  {%- if w.pubdate and w.pubdate != "" -%}{%- assign d = w.pubdate | date: "%Y%m%d" -%}{%- endif -%}
+  {%- assign key = d | append: "~" | append: w.url -%}
+  {%- assign sort_keys = sort_keys | push: key -%}
+{%- endfor -%}
+{%- assign sort_keys = sort_keys | sort | reverse -%}
+{%- for key in sort_keys -%}
+  {%- assign u = key | split: "~" | last -%}
+  {%- assign hit = include.list | where: "url", u | first -%}
+  {%- assign sorted_works = sorted_works | push: hit -%}
+{%- endfor -%}

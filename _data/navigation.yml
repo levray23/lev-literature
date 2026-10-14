@@ -1,0 +1,19 @@
+- label: Home
+  url: /
+- label: Poems
+  url: /poetry/
+  category: Poetry
+- label: Prose
+  url: /prose/
+  category: Prose
+- label: Fiction
+  url: /fiction/
+  category: Fiction
+- label: Nonfiction
+  url: /nonfiction/
+  category: Nonfiction
+- label: Fragments
+  url: /fragments/
+  category: Fragments
+- label: About Lev
+  url: /about/

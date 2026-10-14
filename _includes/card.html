@@ -1,0 +1,24 @@
+{%- assign w = include.work -%}
+{%- if w.excerpt and w.excerpt != "" -%}
+  {%- assign ex = w.excerpt -%}
+{%- else -%}
+  {%- assign ex = w.content | strip_html | remove: "#" | remove: "*" | strip_newlines | strip | truncatewords: 26 -%}
+{%- endif -%}
+{%- assign haystack = w.title | append: " " | append: w.subtitle | append: " " | append: ex | downcase | escape -%}
+<article class="card" data-lang="{{ w.language }}" data-search="{{ haystack }}">
+  <a class="card-link" href="{{ w.url | relative_url }}">
+    <div class="card-media"><div class="card-photo">
+      {% if w.image and w.image != "" %}
+        <img src="{{ w.image | relative_url }}" alt="{{ w.image_alt | default: '' | escape }}" loading="lazy" decoding="async">
+      {% else %}
+        <div class="fallback" aria-hidden="true"><span class="fallback-initial">{{ w.title | remove: "[" | strip | slice: 0 | upcase }}</span><span class="fallback-cat">{{ w.category }}</span></div>
+      {% endif %}
+    </div></div>
+    <div class="card-body">
+      <p class="meta"><span class="meta-cat">{{ w.category }}</span><span>{{ w.language }}</span>{% if w.pubdate and w.pubdate != "" %}<span>{{ w.pubdate | date: "%b %Y" }}</span>{% endif %}</p>
+      <h3 class="card-title">{{ w.title }}</h3>
+      {% if w.subtitle and w.subtitle != "" %}<p class="card-subtitle">{{ w.subtitle }}</p>{% endif %}
+      <p class="card-excerpt">{{ ex }}</p>
+    </div>
+  </a>
+</article>

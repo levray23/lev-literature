@@ -1,0 +1,16 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}">Lev’s Literature</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav aria-label="Primary">
+      <ul class="nav-list" id="site-nav">
+        {% for item in site.data.navigation %}
+          {% assign current = false %}
+          {% if page.url == item.url %}{% assign current = true %}{% endif %}
+          {% if item.category and page.category == item.category %}{% assign current = true %}{% endif %}
+          <li><a href="{{ item.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

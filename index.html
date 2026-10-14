@@ -1,0 +1,108 @@
+---
+layout: default
+---
+{% include sort-works.html list=site.works %}
+{% assign newest = sorted_works %}
+{% assign newest_first = newest | first %}
+{% assign featured_raw = site.works | where: "featured", true %}
+{% include sort-works.html list=featured_raw %}
+{% assign featured_sorted = sorted_works %}
+{% assign total = site.works | size %}
+{% assign n_en = site.works | where: "language", "English" | size %}
+{% assign n_fil = site.works | where: "language", "Filipino" | size %}
+{% assign n_both = site.works | where: "language", "Both" | size %}
+{% assign n_shelves = site.data.categories | size %}
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <h1 class="hero-title">Lev’s <em>Literature</em></h1>
+      <div class="hero-rule" aria-hidden="true"></div>
+      <p class="hero-tagline">{{ site.data.site.tagline }}</p>
+      <div class="hero-actions">
+        <a class="btn" href="#shelves">Enter the archive</a>
+        {% if newest_first %}<a class="btn btn--ghost" href="{{ newest_first.url | relative_url }}">Read the newest piece</a>{% endif %}
+      </div>
+    </div>
+    <figure class="hero-figure">
+      <img src="{{ site.data.site.hero_image | relative_url }}" alt="">
+      <figcaption>{{ site.data.site.hero_caption }}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="intro-band" aria-labelledby="intro-h">
+  <div class="container intro-grid">
+    <h2 class="intro-statement" id="intro-h">{{ site.data.site.archive_statement }}</h2>
+    <div class="intro-side">
+      <p>{{ site.data.site.archive_text }}</p>
+      <div class="stats">
+        <div><strong>{{ total }}</strong><span>writings</span></div>
+        <div><strong>{{ n_shelves }}</strong><span>shelves</span></div>
+        <div><strong>{{ n_en | plus: n_fil | plus: n_both }}</strong><span>in English, Filipino, or both</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="featured" aria-labelledby="feat-h">
+  <div class="container">
+    <div class="section-head">
+      <div><h2 class="h2" id="feat-h">Featured Writings</h2><p>A curated selection from across the archive.</p></div>
+    </div>
+    {% if featured_sorted.size > 0 %}
+      {% include carousel.html items=featured_sorted label="Featured writings" limit=16 %}
+    {% else %}
+      <p class="empty">Mark a piece as Featured to show it here.</p>
+    {% endif %}
+  </div>
+</section>
+
+<div class="ornament" aria-hidden="true"><span>· · ·</span></div>
+<span id="shelves"></span>
+
+{% for cat in site.data.categories %}
+  {% assign in_cat = site.works | where: "category", cat.name %}
+  {% assign cat_count = in_cat | size %}
+  {% include sort-works.html list=in_cat %}
+  <section class="showcase theme-{{ cat.theme }}" id="shelf-{{ cat.theme }}" aria-labelledby="h-{{ cat.theme }}">
+    <div class="container">
+      <div class="showcase-head">
+        <span class="numeral-big" aria-hidden="true">{{ cat.numeral }}</span>
+        <div>
+          <h2 class="h2" id="h-{{ cat.theme }}">{{ cat.nav }}</h2>
+          <p>{{ cat.tagline }}</p>
+        </div>
+        <a class="text-link" href="{{ cat.url | relative_url }}">Enter {{ cat.nav }}: {{ cat_count }} {% if cat_count == 1 %}writing{% else %}writings{% endif %} →</a>
+      </div>
+      {% if cat_count > 0 %}
+        {% include carousel.html items=sorted_works label=cat.nav limit=12 %}
+      {% else %}
+        <p class="empty">Nothing has been published in {{ cat.nav }} yet.</p>
+      {% endif %}
+    </div>
+  </section>
+{% endfor %}
+
+<section class="section" id="recent" aria-labelledby="recent-h">
+  <div class="container recent">
+    <div class="recent-intro">
+      <h2 class="h2" id="recent-h">Recently added</h2>
+      <p>The newest writings across every shelf, in the order they were published.</p>
+    </div>
+    <ul class="recent-list">
+      {% for w in newest limit: 8 %}{% include recent-row.html work=w %}{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section teaser">
+  <div class="container teaser-grid">
+    <img src="{{ '/assets/site/portrait.svg' | relative_url }}" alt="">
+    <div>
+      <h2 class="h2">About Lev</h2>
+      <p>{{ site.data.site.about_teaser }}</p>
+      <a class="btn btn--ghost" href="{{ '/about/' | relative_url }}">Meet the writer</a>
+    </div>
+  </div>
+</section>

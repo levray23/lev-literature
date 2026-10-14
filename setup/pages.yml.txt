@@ -1,0 +1,154 @@
+# Pages CMS configuration for Lev's Literature
+# Docs: https://pagescms.org/docs/
+
+# Where uploaded photographs are stored inside the GitHub repository.
+# "input" is the folder in the repo; "output" is the public path the website uses.
+media:
+  input: assets/uploads
+  output: /assets/uploads
+  label: Photographs
+  categories: [image]
+
+content:
+  # ------------------------------------------------------------------
+  # 1. LITERARY WORKS: one file per piece, in the _works folder
+  # ------------------------------------------------------------------
+  - name: works
+    label: Literary Works
+    type: collection
+    path: _works
+    # The web address of a piece comes from its title the first time it is saved.
+    # Changing the title later does not change the address.
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      primary: title
+      fields: [title, category, language, pubdate, featured]
+      sort: [pubdate, title]
+      default:
+        sort: pubdate
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+
+      - name: subtitle
+        label: Subtitle (optional)
+        type: string
+
+      - name: category
+        label: Category
+        type: select
+        required: true
+        default: Poetry
+        options:
+          values: [Poetry, Prose, Fiction, Nonfiction, Fragments]
+
+      - name: language
+        label: Language
+        type: select
+        required: true
+        default: English
+        options:
+          values: [English, Filipino, Both]
+
+      - name: image
+        label: Featured photograph
+        description: Optional. Any shape works (portrait, landscape, square). If left empty, a typographic placeholder is shown.
+        type: image
+
+      - name: image_alt
+        label: Photograph description (optional)
+        description: A short description for screen readers.
+        type: string
+
+      - name: image_caption
+        label: Photograph caption (optional)
+        type: string
+
+      - name: excerpt
+        label: Short excerpt for cards (optional)
+        description: Shown on cards. If empty, the first words of the text are used.
+        type: text
+
+      - name: pubdate
+        label: Publication date (optional)
+        type: date
+        options:
+          format: yyyy-MM-dd
+
+      - name: featured
+        label: Show on the Home page (Featured)
+        type: boolean
+        default: false
+
+      - name: body
+        label: Text
+        type: rich-text
+
+  # ------------------------------------------------------------------
+  # 2. ABOUT PAGE
+  # ------------------------------------------------------------------
+  - name: about
+    label: About Page
+    type: file
+    path: about.md
+    format: yaml-frontmatter
+    fields:
+      - name: portrait
+        label: Portrait or personal visual (optional)
+        type: image
+      - name: portrait_alt
+        label: Portrait description (optional)
+        type: string
+      - name: quote
+        label: Pull quote (optional)
+        type: text
+      - name: philosophy
+        label: Literary philosophy
+        type: rich-text
+      - name: purpose
+        label: Purpose of the archive
+        type: rich-text
+      - name: body
+        label: Author introduction
+        type: rich-text
+
+  # ------------------------------------------------------------------
+  # 3. SITE TEXT: tagline, home introduction, footer, contact
+  # ------------------------------------------------------------------
+  - name: site
+    label: Site Text
+    type: file
+    path: _data/site.yml
+    format: yaml
+    fields:
+      - name: tagline
+        label: Tagline
+        type: string
+      - name: hero_image
+        label: Home page photograph
+        type: image
+      - name: hero_caption
+        label: Home photograph caption
+        type: string
+      - name: archive_statement
+        label: Archive statement (large text on Home)
+        type: text
+      - name: archive_text
+        label: Archive introduction paragraph
+        type: text
+      - name: about_teaser
+        label: About invitation (Home)
+        type: text
+      - name: footer_note
+        label: Footer note
+        type: string
+      - name: contact_label
+        label: Contact link text (optional)
+        type: string
+      - name: contact_url
+        label: Contact link address (optional)
+        type: string

@@ -1,0 +1,31 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand">Lev’s Literature</div>
+      <p class="footer-tagline">{{ site.data.site.tagline }}</p>
+    </div>
+    <div class="footer-col">
+      <h2>Read</h2>
+      <ul>
+        {% for cat in site.data.categories %}
+          {% assign n = site.works | where: "category", cat.name | size %}
+          <li><a href="{{ cat.url | relative_url }}">{{ cat.nav }} ({{ n }})</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h2>The Archive</h2>
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">Home</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">About Lev</a></li>
+        {% if site.data.site.contact_label and site.data.site.contact_label != "" %}
+          <li>{% if site.data.site.contact_url and site.data.site.contact_url != "" %}<a href="{{ site.data.site.contact_url }}">{{ site.data.site.contact_label }}</a>{% else %}<span>{{ site.data.site.contact_label }}</span>{% endif %}</li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-base">
+    <span>© {{ 'now' | date: '%Y' }} Lev. All writing and photographs belong to their author.</span>
+    <span>{{ site.data.site.footer_note }}</span>
+  </div>
+</footer>

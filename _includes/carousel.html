@@ -1,0 +1,14 @@
+{%- assign lim = include.limit | default: 12 -%}
+<div class="carousel" data-carousel role="region" aria-roledescription="carousel" aria-label="{{ include.label }}">
+  <div class="carousel-bar">
+    <span class="carousel-count" data-count aria-live="polite"></span>
+    <div class="carousel-arrows">
+      <button type="button" class="car-btn" data-dir="-1" aria-label="Previous writings"></button>
+      <button type="button" class="car-btn" data-dir="1" aria-label="Next writings"></button>
+    </div>
+  </div>
+  <ul class="carousel-track" data-track tabindex="0" aria-label="{{ include.label }}. Swipe, scroll, or use the arrow keys.">
+    {% for w in include.items limit: lim %}<li class="slide">{% include card.html work=w %}</li>{% endfor %}
+  </ul>
+  <div class="carousel-dots" data-dots></div>
+</div>

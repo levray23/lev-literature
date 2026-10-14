@@ -1,0 +1,63 @@
+---
+layout: default
+---
+{% assign cat = site.data.categories | where: "name", page.category | first %}
+{% assign in_category = site.works | where: "category", page.category %}
+{% assign cat_total = in_category | size %}
+{% include sort-works.html list=in_category %}
+{% assign found = false %}
+{% assign prev_work = nil %}
+{% assign next_work = nil %}
+{% for w in sorted_works %}
+  {% if found and prev_work == nil %}{% assign prev_work = w %}{% endif %}
+  {% if w.url == page.url %}{% assign found = true %}{% elsif found == false %}{% assign next_work = w %}{% endif %}
+{% endfor %}
+{% assign others = sorted_works | where_exp: "o", "o.url != page.url" %}
+
+<div class="progress" aria-hidden="true"><span></span></div>
+
+<article class="reading reading--{{ cat.theme }}">
+  <div class="container">
+    <a class="back" href="{{ cat.url | relative_url }}">← Back to the {{ cat.nav }} archive</a>
+    <div class="reading-layout">
+      <header class="reading-head">
+        <p class="meta meta--center">
+          <span class="meta-cat">{{ page.category }}</span>
+          <span>{{ page.language }}</span>
+          {% if page.pubdate and page.pubdate != "" %}<span>{{ page.pubdate | date: "%B %-d, %Y" }}</span>{% endif %}
+        </p>
+        <h1 class="reading-title">{{ page.title }}</h1>
+        {% if page.subtitle and page.subtitle != "" %}<p class="reading-subtitle">{{ page.subtitle }}</p>{% endif %}
+        <p class="byline">By <strong>Lev</strong>
+          {% if cat.theme == "prose" or cat.theme == "fiction" or cat.theme == "nonfiction" %}{% assign words = content | number_of_words %} · about {{ words | divided_by: 200 | plus: 1 }} min read{% endif %}
+        </p>
+        <div class="rule" aria-hidden="true"></div>
+      </header>
+
+      {% if page.image and page.image != "" %}
+        <figure class="reading-media">
+          <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: '' | escape }}" decoding="async">
+          {% if page.image_caption and page.image_caption != "" %}<figcaption>{{ page.image_caption }}</figcaption>{% endif %}
+        </figure>
+      {% endif %}
+
+      <div class="reading-body"{% if page.language == "Filipino" %} lang="fil"{% endif %}>
+        {{ content }}
+        <div class="end-mark" aria-hidden="true">· · ·</div>
+      </div>
+    </div>
+
+    <nav class="pager" aria-label="More in {{ page.category }}">
+      <div>{% if prev_work %}<a href="{{ prev_work.url | relative_url }}"><span class="label">← Previous</span><span class="pager-title">{{ prev_work.title }}</span></a>{% endif %}</div>
+      <div class="pager-next">{% if next_work %}<a href="{{ next_work.url | relative_url }}"><span class="label">Next →</span><span class="pager-title">{{ next_work.title }}</span></a>{% endif %}</div>
+    </nav>
+
+    {% if others.size > 0 %}
+    <section class="more" aria-labelledby="more-h">
+      <div class="section-head"><h2 class="h2" id="more-h">More in {{ cat.nav }}</h2></div>
+      {% include carousel.html items=others label=cat.nav limit=12 %}
+    </section>
+    {% endif %}
+    <p class="back-archive"><a class="btn btn--ghost" href="{{ cat.url | relative_url }}">Browse all {{ cat_total }} in the archive</a></p>
+  </div>
+</article>

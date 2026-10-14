@@ -1,0 +1,33 @@
+title: Lev’s Literature
+description: A collection of thoughts, stories, and things left unsaid.
+
+# If your repository is named <username>.github.io, leave baseurl empty.
+# Otherwise set it to "/your-repository-name" (see README, step 4).
+baseurl: ""
+url: ""
+
+markdown: kramdown
+
+collections:
+  works:
+    output: true
+    permalink: /writing/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: works
+    values:
+      layout: work
+  - scope:
+      path: "about.md"
+    values:
+      layout: about
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - setup
+  - vendor
+  - node_modules
