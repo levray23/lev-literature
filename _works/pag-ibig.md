@@ -12,7 +12,7 @@ pubdate: 2026-10-14
 featured: false
 ---
 Kung ang nagraragasang tubig sa daan
-ang ihahambing sa kalungkutan
+ang ihahambing sa kalungkutan,
 Tila 'di titila 'tong ulan, 
 at ang mga tula'y tuluyang magiging tulay
 upang masabi ang nararamdaman
@@ -75,9 +75,9 @@ Kung ang kamay ay may kakayahan,
 iguguhit ka na parang sarili kong likha.
 
 Marahil ang pagkabulag ko sa'yong rilag
-Ay sa kadahilanang tulad ka ng araw na may sinag,
+ay sa kadahilanang tulad ka ng araw na may sinag,
 kung ganun man ay hindi na ako magugulantang, 
 sapagka't gaya ng araw, sa'yo naman talaga umiikot ang mundo ko.
 
-sabi nila, "Ang buhay ay para sa pag-ibig
+sabi nila, "Ang buhay ay para sa pag-ibig"
 pero ikaw ang buhay ko't pag-ibig.
